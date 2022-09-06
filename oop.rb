@@ -24,6 +24,10 @@ unicorn2.say
 
 #  Write a class called Vampire
 class Vampire
+
+  attr_reader :thirsty
+  attr_reader :pet
+
   def initialize(name)
     #  it should have a dynamic name attribute
     @name = name
@@ -44,9 +48,27 @@ class Vampire
   end
 end
 
+vampire1 = Vampire.new("Dracula")
+
+vampire2 = Vampire.new("Count Chocula")
+
+p vampire1.thirsty
+
+vampire1.drink
+
+p vampire1.thirsty
+
+p vampire2.pet
+
+vampire2.change_pet("wolf")
+
+p vampire2.pet
 
 #  Write a Dragon class
 class Dragon
+
+attr_reader :is_hungry
+
   def initialize(name, rider, color)
     #  it should have a dynamic name attribute (string)
     @name = name
@@ -66,6 +88,7 @@ class Dragon
       p "The #{@name} ate, and is finally full."
   end
 end
+
 count = 0
 name = :eat
 
@@ -77,6 +100,18 @@ name = :eat
     then @is_hungry = false
   end
 end
+
+dragon1 = Dragon.new("Toothless", "Hiccup", "Black")
+
+dragon2 = Dragon.new("Stormfly", "Astrid", "Green")
+
+dragon3 = Dragon.new("Smaug", "None", "Red")
+
+4.times { dragon3.eat }
+p dragon3.is_hungry
+
+### I need to come back and figure out how to recognize ".eat" has been used, and store that quantity
+### I also want to store that ".eat" was used on a specific instance, because if I do not, then is_hungry will = true for all
 
 
 #  Write a Hobbit class
@@ -99,7 +134,7 @@ class Hobbit
   #  once a Hobbit is 33, it should be an adult
   @is_adult = false
 
-  if age == 33 && age <= 100
+  if age >= 33 && age <= 100
     @is_adult = true
   else @is_adult = false
   end
@@ -107,7 +142,7 @@ class Hobbit
   #  it should have an is_old attribute that defaults to false. once a Hobbit is 101, it is old.
   @is_old = false
 
-  if @age >= 101
+  if age >= 101
     @is_old = true
   end
 
@@ -119,3 +154,15 @@ class Hobbit
   end
 
 end
+
+hobbit1 = Hobbit.new("Bilbo", "Curious")
+p hobbit1
+150.times { hobbit1.celebrate_birthday }
+p hobbit1
+
+hobbit2 = Hobbit.new("Frodo", "Sunny")
+p hobbit2
+50.times { hobbit2.celebrate_birthday }
+p hobbit2
+
+hobbit3 = Hobbit.new("Samwise", "Brave")
