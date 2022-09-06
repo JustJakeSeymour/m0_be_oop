@@ -122,6 +122,8 @@ class Hobbit
     #  it should have a dynamic disposition attribute (string)
     @disposition = disposition
     #  it should have an age attribute that defaults to 0
+####### I'M CURRENTLY STUMPED HERE: I KEEP GETTING 'UNDEFINED LOCAL VARIABLE FOR "AGE"'
+####### BUT THIS LOOKS FINE HERE, IS THERE SOMETHING WRONG HAPPENING LATER IN THE CODE?
     @age = 0
   end
 
