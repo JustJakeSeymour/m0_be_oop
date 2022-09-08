@@ -122,37 +122,47 @@ class Hobbit
     #  it should have a dynamic disposition attribute (string)
     @disposition = disposition
     #  it should have an age attribute that defaults to 0
-####### I'M CURRENTLY STUMPED HERE: I KEEP GETTING 'UNDEFINED LOCAL VARIABLE FOR "AGE"'
-####### BUT THIS LOOKS FINE HERE, IS THERE SOMETHING WRONG HAPPENING LATER IN THE CODE?
+####### I fixed my block by making sure `@age` was being used, and that the methods
+####### were defined in their own codeblocks. I also had to call the method to
+####### perform the "check" and change the attribute.
     @age = 0
+    #  it should have an is_adult attribute (boolean) that is false by default.
+    #  once a Hobbit is 33, it should be an adult
+    @is_adult = false
+
+    #  it should have an is_old attribute that defaults to false. once a Hobbit is 101, it is old.
+    @is_old = false
+
+    #  it should have a has_ring attribute. If the Hobbit's name is "Frodo", true, if not, false.
+    @has_ring = false
+
   end
 
   #  it should have a celebrate_birthday method. When called, the age increases by 1
   def celebrate_birthday()
-    @age = age+1
+    @age = @age + 1
   end
 
-  #  it should have an is_adult attribute (boolean) that is false by default.
-  #  once a Hobbit is 33, it should be an adult
-  @is_adult = false
-
-  if age >= 33 && age <= 100
-    @is_adult = true
-  else @is_adult = false
+  # This method is how the @is_adult gets changed
+  def adult_check()
+    if @age >= 33 && @age <= 100
+      @is_adult = true
+      else @is_adult = false
+    end
   end
 
-  #  it should have an is_old attribute that defaults to false. once a Hobbit is 101, it is old.
-  @is_old = false
-
-  if age >= 101
-    @is_old = true
+  # This method is how the @is_old gets changed
+  def old_check()
+    if @age >= 101
+      @is_old = true
+    end
   end
 
-  #  it should have a has_ring attribute. If the Hobbit's name is "Frodo", true, if not, false.
-  @has_ring = false
-
-  if name == "Frodo"
+  # This method is how the @has_ring gets changed
+  def ring_check()
+    if @name == "Frodo"
     @has_ring = true
+    end
   end
 
 end
@@ -160,11 +170,19 @@ end
 hobbit1 = Hobbit.new("Bilbo", "Curious")
 p hobbit1
 150.times { hobbit1.celebrate_birthday }
+hobbit1.adult_check
+hobbit1.old_check
+hobbit1.ring_check
 p hobbit1
 
 hobbit2 = Hobbit.new("Frodo", "Sunny")
 p hobbit2
 50.times { hobbit2.celebrate_birthday }
+hobbit2.adult_check
+hobbit2.old_check
+hobbit2.ring_check
 p hobbit2
 
 hobbit3 = Hobbit.new("Samwise", "Brave")
+hobbit3.adult_check
+hobbit3.old_check
