@@ -78,28 +78,23 @@ attr_reader :is_hungry
     @color = color
     #  it should have a is_hungry attribute that is true by default
     @is_hungry = true
+    #  this stores number of times eat has been called FOR EACH INSTANCE
+    @eat_count = 0
   end
 
 #  it should have a eat method. If the dragon eats 4 times, it is no longer hungry
   def eat
-    if @is_hungry == true
-      p "The #{@name} ate, but is still hungry!"
-    else
+    @eat_count = @eat_count + 1
+    if @eat_count >= 4
+      @is_hungry = false
       p "The #{@name} ate, and is finally full."
+      else
+      p "The #{@name} ate, but is still hungry!"
+    end
   end
+
 end
 
-count = 0
-name = :eat
-
-  TracePoint.trace(:call) do |t|
-  count += 1 if t.method_id == name
-  end
-
-  if count >= 4
-    then @is_hungry = false
-  end
-end
 
 dragon1 = Dragon.new("Toothless", "Hiccup", "Black")
 
@@ -107,12 +102,15 @@ dragon2 = Dragon.new("Stormfly", "Astrid", "Green")
 
 dragon3 = Dragon.new("Smaug", "None", "Red")
 
+p dragon3
+
 4.times { dragon3.eat }
-p dragon3.is_hungry
 
-### I need to come back and figure out how to recognize ".eat" has been used, and store that quantity
-### I also want to store that ".eat" was used on a specific instance, because if I do not, then is_hungry will = true for all
+p dragon3
+p dragon2
 
+##### I came back and realized the answer was right in front of me...
+##### Store the "eat" count as an instance attribute.
 
 #  Write a Hobbit class
 class Hobbit
@@ -162,6 +160,8 @@ class Hobbit
   def ring_check()
     if @name == "Frodo"
     @has_ring = true
+  elsif @name == "Bilbo"
+    p "After all, why not? Why shouldn't I keep it?"
     end
   end
 
